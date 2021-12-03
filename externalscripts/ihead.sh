@@ -12,6 +12,7 @@ if ! which xidel >/dev/null; then
     exit 2
 fi
 
+
 # Set parameters
 USERNAME=${1}
 PASSWORD=${2}
@@ -21,7 +22,7 @@ URL="https://www.ihead.ru/users"
 # Delete old cookies and LogIn
 rm -f ${COOKIE} && \
 curl -s -X POST \
-  --data-raw "next=https://www.ihead.ru/users/&action=login&login=${USERNAME}&passw=${PASSWORD}&bindToIP=1&btnSubmit=войти" \
+  --data-raw "next=https://www.ihead.ru/users/&action=login&login=${USERNAME}&passw=${PASSWORD}&bindToIP=1&btnSubmit=РІРѕР№С‚Рё" \
   -b ${COOKIE} -c ${COOKIE} \
   ${URL}/enter.html > /dev/null
 
