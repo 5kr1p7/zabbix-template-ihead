@@ -16,7 +16,7 @@ fi
 # Set parameters
 USERNAME=${1}
 PASSWORD=${2}
-COOKIE="/tmp/ihead.cookie"
+COOKIE="/tmp/ihead_${USERNAME}.cookie"
 URL="https://www.ihead.ru/users"
 
 # Delete old cookies and LogIn
