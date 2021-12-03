@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2021-12-03T08:59:35Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>iHead</template>
+            <name>iHead</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>iHead</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Баланс {$IHEAD_USERNAME}</name>
+                    <type>EXTERNAL</type>
+                    <key>ihead.sh[&quot;{$IHEAD_USERNAME}&quot;,&quot;{$IHEAD_PASSWORD}&quot;]</key>
+                    <delay>1h</delay>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>!руб.</units>
+                    <applications>
+                        <application>
+                            <name>iHead</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;={$IHEAD_LOW}</expression>
+                            <name>Низкий баланс счёта iHead ({$IHEAD_USERNAME})</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>type</tag>
+                                    <value>PAYMENT</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$IHEAD_LOW}</macro>
+                    <value>-10000</value>
+                    <description>Порог баланса</description>
+                </macro>
+                <macro>
+                    <macro>{$IHEAD_PASSWORD}</macro>
+                    <type>SECRET_TEXT</type>
+                    <description>Пароль</description>
+                </macro>
+                <macro>
+                    <macro>{$IHEAD_USERNAME}</macro>
+                    <description>Имя пользователя</description>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+</zabbix_export>
